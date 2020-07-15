@@ -16,6 +16,7 @@
 		CEDCA58F22668BCF009EA535 /* AnimalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCA58E22668BCF009EA535 /* AnimalsTableViewController.swift */; };
 		CEDCA59122668D0F009EA535 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCA59022668D0F009EA535 /* LoginViewController.swift */; };
 		CEDCA59A226697BD009EA535 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCA599226697BD009EA535 /* APIController.swift */; };
+		E149232C24BD510400A5BA10 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149232B24BD510400A5BA10 /* Animal.swift */; };
 		E1C77E6224B8028F0011859E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C77E6124B8028F0011859E /* User.swift */; };
 		E1C77E6424B80B790011859E /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C77E6324B80B790011859E /* Bearer.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		CEDCA58E22668BCF009EA535 /* AnimalsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsTableViewController.swift; sourceTree = "<group>"; };
 		CEDCA59022668D0F009EA535 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEDCA599226697BD009EA535 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
+		E149232B24BD510400A5BA10 /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Animal.swift; path = AnimalSpotter/Animal.swift; sourceTree = SOURCE_ROOT; };
 		E1C77E6124B8028F0011859E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = AnimalSpotter/User.swift; sourceTree = SOURCE_ROOT; };
 		E1C77E6324B80B790011859E /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bearer.swift; path = AnimalSpotter/Bearer.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 			children = (
 				E1C77E6124B8028F0011859E /* User.swift */,
 				E1C77E6324B80B790011859E /* Bearer.swift */,
+				E149232B24BD510400A5BA10 /* Animal.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				CEDCA58F22668BCF009EA535 /* AnimalsTableViewController.swift in Sources */,
 				CE414D6F2461BC8A00E54457 /* SceneDelegate.swift in Sources */,
 				E1C77E6224B8028F0011859E /* User.swift in Sources */,
+				E149232C24BD510400A5BA10 /* Animal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,10 @@
 import UIKit
 
 class AnimalDetailViewController: UIViewController {
+
+    var apiController: APIController?
+    var animalName: String?
+
     
     // MARK: - Properties
     
@@ -21,5 +25,39 @@ class AnimalDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDetails()
+    }
+
+    func getDetails() {
+        guard let apiController = apiController,
+        let animalName = animalName else { return }
+
+        apiController.fetchDetails(for: animalName) { (result) in
+            switch result {
+            case .success(let animal):
+                DispatchQueue.main.async {
+                    self.updateViews(with: animal)
+                }
+                apiController.fetchImage(at: animal.imageURL) { (result) in
+                    if let image = try? result.get() {
+                        DispatchQueue.main.async {
+                            self.animalImageView.image = image
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("Error fetching animal detials \(error)")
+            }
+        }
+    }
+
+    func updateViews(with animals: Animal) {
+        title = animals.name
+        descriptionLabel.text = animals.description
+        coordinatesLabel.text = "lat: \(animals.latitude), long: \(animals.longitude)"
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        timeSeenLabel.text = df.string(from: animals.timeSeen)
     }
 }

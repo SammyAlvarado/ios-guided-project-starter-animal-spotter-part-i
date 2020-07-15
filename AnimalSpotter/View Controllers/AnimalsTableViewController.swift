@@ -13,7 +13,11 @@ class AnimalsTableViewController: UITableViewController {
     // MARK: - Properties
     
     let reuseIdentifier = "AnimalCell"
-    private var animalNames: [String] = []
+    private var animalNames: [String] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     let apiController = APIController() // This is going to hold user, token its also known as the dependencie
 
     // MARK: - View Lifecycle
@@ -50,13 +54,40 @@ class AnimalsTableViewController: UITableViewController {
     
     @IBAction func getAnimals(_ sender: UIBarButtonItem) {
         // fetch all animals from API
+        apiController.fetchAllAnimalNames { (result) in
+            // Use the do try to check
+            do {
+                let names = try result.self.get()
+                DispatchQueue.main.async {
+                    self.animalNames = names
+                }
+            } catch {
+                if let error = error as? APIController.NetworkError {
+                    switch error {
+                    case .noToken:
+                        print("Have user try to logn in again.")
+                    case .noData, .tryAgain:
+                        print("Have user try again")
+                    default:
+                        break
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginViewModalSegue" {
+        if segue.identifier == "ShowAnimalDetailSegue",
+            let detailVC = segue.destination as? AnimalDetailViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                detailVC.animalName = animalNames[indexPath.row]
+            }
+            detailVC.apiController = apiController
+        }
+        else if segue.identifier == "LoginViewModalSegue" {
             // inject dependencies
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.apiController = apiController
